@@ -3,6 +3,8 @@ use std::str::from_utf8_unchecked;
 use std::cmp::min;
 use std::io::{self, Write};
 
+use state;
+
 use term_painter::Color::*;
 use term_painter::ToStyle;
 
@@ -441,6 +443,15 @@ impl Rocket {
             }
 
             self.catchers.insert(c.code, c);
+        }
+
+        self
+    }
+
+    pub fn manage<T: Send + Sync + 'static>(self, state: T) -> Self {
+        if !state::set::<T>(state) {
+            error!("State for this type is already being managed!");
+            panic!("Aborting due to duplicately managed state.");
         }
 
         self
