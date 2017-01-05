@@ -95,7 +95,6 @@ extern crate term_painter;
 extern crate hyper;
 extern crate url;
 extern crate toml;
-extern crate state;
 
 #[cfg(test)] #[macro_use] extern crate lazy_static;
 
@@ -115,7 +114,6 @@ mod rocket;
 mod codegen;
 mod catcher;
 mod ext;
-mod managed_state;
 
 #[doc(inline)] pub use response::Response;
 #[doc(inline)] pub use handler::{Handler, ErrorHandler};
@@ -128,7 +126,6 @@ pub use request::Request;
 pub use error::Error;
 pub use catcher::Catcher;
 pub use rocket::Rocket;
-pub use managed_state::State;
 
 /// Alias to [Rocket::ignite()](/rocket/struct.Rocket.html#method.ignite).
 /// Creates a new instance of `Rocket`.
